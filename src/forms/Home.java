@@ -7,8 +7,7 @@ import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import model.Employee;
-//import model.Leave;
-//import model.PaySlip;
+
 import model.Payroll;
 import model.Print;
 
@@ -17,8 +16,7 @@ public class Home extends javax.swing.JFrame {
 
     Employee objEmployee = new Employee();
     Payroll objPayroll = new Payroll();
-   // PaySlip objPaySlip = new PaySlip();
-    //Leave objLeave = new Leave();
+   
 
     /**
      * Creates new form Home
@@ -2339,28 +2337,12 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_search_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_search_leaveActionPerformed
 
-     /*   if (objLeave.getLeaveDetails(getEmpId())) {
-
-            txt_empId_leave.setText(String.valueOf(objLeave.objEmployee.getEmpId()));
-            txt_fname_leave.setText(objLeave.objEmployee.getFname());
-            txt_lname_leave.setText(objLeave.objEmployee.getLname());
-            txt_desig_leave.setText(objLeave.objEmployee.getDesignation());
-            txt_depart_leave.setText(objLeave.objEmployee.getDepartment());
-            txt_annual_count.setText(String.valueOf(objLeave.getAnnual()));
-            txt_casual_count.setText(String.valueOf(objLeave.getCasual()));
-            txt_optional_count.setText(String.valueOf(objLeave.getOptional()));
-        } */
+  
     }//GEN-LAST:event_btn_search_leaveActionPerformed
 
     private void btn_apply_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_apply_leaveActionPerformed
 
-      /*  objLeave.objEmployee.setEmpId(Integer.parseInt(txt_empId_leave.getText()));
-        objLeave.setAnnual(Double.parseDouble(txt_annual_count.getText()) - Double.parseDouble(txt_annual_apply.getText()));
-        objLeave.setCasual(Double.parseDouble(txt_casual_count.getText()) - Double.parseDouble(txt_casual_apply.getText()));
-        objLeave.setOptional(Double.parseDouble(txt_optional_count.getText()) - Double.parseDouble(txt_optional_apply.getText()));
-        if (objLeave.applyLeave()) {
-            clearLeave();
-        } */
+      
     }//GEN-LAST:event_btn_apply_leaveActionPerformed
 
     private void btn_exit_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exit_leaveActionPerformed
