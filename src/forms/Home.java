@@ -7,7 +7,8 @@ import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import model.Employee;
-
+import model.Leave;
+import model.PaySlip;
 import model.Payroll;
 import model.Print;
 
@@ -16,7 +17,8 @@ public class Home extends javax.swing.JFrame {
 
     Employee objEmployee = new Employee();
     Payroll objPayroll = new Payroll();
-   
+    PaySlip objPaySlip = new PaySlip();
+    Leave objLeave = new Leave();
 
     /**
      * Creates new form Home
@@ -1705,7 +1707,7 @@ public class Home extends javax.swing.JFrame {
 
         lbl_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forms/images/home.jpg"))); // NOI18N
         getContentPane().add(lbl_background);
-        lbl_background.setBounds(0, 0, 2400, 1560);
+        lbl_background.setBounds(0, 0, 1200, 700);
 
         menu_menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -1833,6 +1835,11 @@ public class Home extends javax.swing.JFrame {
 
         menuBar_help_online.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         menuBar_help_online.setText("Online Help");
+        menuBar_help_online.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBar_help_onlineActionPerformed(evt);
+            }
+        });
         menuBar_help.add(menuBar_help_online);
 
         menu_menuBar.add(menuBar_help);
@@ -2268,7 +2275,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBar_payslip_printActionPerformed
 
     private void btn_pay_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pay_searchActionPerformed
-/*
+
         if (objPaySlip.getPayDetails(getEmpId())) {
             lbl_pay_empId.setText(String.valueOf(objPaySlip.objEmployee.getEmpId()));
             lbl_pay_name.setText(objPaySlip.objEmployee.getFname() + " " + objPaySlip.objEmployee.getLname());
@@ -2285,7 +2292,7 @@ public class Home extends javax.swing.JFrame {
             lbl_pay_deduct.setText(String.valueOf(objPaySlip.getTotalDeductions()));
             lbl_pay_net.setText(String.valueOf(objPaySlip.getNetPay()));
 
-        }  */
+        }
     }//GEN-LAST:event_btn_pay_searchActionPerformed
 
     private void btn_pay_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pay_printActionPerformed
@@ -2337,12 +2344,28 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_search_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_search_leaveActionPerformed
 
-  
+        if (objLeave.getLeaveDetails(getEmpId())) {
+
+            txt_empId_leave.setText(String.valueOf(objLeave.objEmployee.getEmpId()));
+            txt_fname_leave.setText(objLeave.objEmployee.getFname());
+            txt_lname_leave.setText(objLeave.objEmployee.getLname());
+            txt_desig_leave.setText(objLeave.objEmployee.getDesignation());
+            txt_depart_leave.setText(objLeave.objEmployee.getDepartment());
+            txt_annual_count.setText(String.valueOf(objLeave.getAnnual()));
+            txt_casual_count.setText(String.valueOf(objLeave.getCasual()));
+            txt_optional_count.setText(String.valueOf(objLeave.getOptional()));
+        }
     }//GEN-LAST:event_btn_search_leaveActionPerformed
 
     private void btn_apply_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_apply_leaveActionPerformed
 
-      
+        objLeave.objEmployee.setEmpId(Integer.parseInt(txt_empId_leave.getText()));
+        objLeave.setAnnual(Double.parseDouble(txt_annual_count.getText()) - Double.parseDouble(txt_annual_apply.getText()));
+        objLeave.setCasual(Double.parseDouble(txt_casual_count.getText()) - Double.parseDouble(txt_casual_apply.getText()));
+        objLeave.setOptional(Double.parseDouble(txt_optional_count.getText()) - Double.parseDouble(txt_optional_apply.getText()));
+        if (objLeave.applyLeave()) {
+            clearLeave();
+        }
     }//GEN-LAST:event_btn_apply_leaveActionPerformed
 
     private void btn_exit_leaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exit_leaveActionPerformed
@@ -2388,6 +2411,12 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error occurred while Updating Salary Detals", "ERROR", 0);
         }
     }//GEN-LAST:event_btn_update_payrollActionPerformed
+
+    private void menuBar_help_onlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBar_help_onlineActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "This is a software which helps in payroll management. You can store and modify the details of a company employees. Also you can note the leave and salary details and print the payroll accordingly.", "", 1);
+
+    }//GEN-LAST:event_menuBar_help_onlineActionPerformed
 
     /**
      * @param args the command line arguments
